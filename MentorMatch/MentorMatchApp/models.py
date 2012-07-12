@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, UserManager
 
 class CustomUser(User):
     """User with app settings."""
-#   name = models.CharField(max_length=250, primary_key=True)
+    name = models.CharField(max_length=250)
 #   email = models.CharField(max_length=250)
     department = models.CharField(max_length=250)      
     mentee = models.BooleanField()
@@ -51,7 +51,7 @@ class Interest(models.Model):
     interest_name = models.CharField(max_length=250,primary_key=True)
     expertise = models.BooleanField()
 
-    users = models.ManyToManyField("CustomUser")    
+    users = models.ManyToManyField("CustomUser", blank=True)    
     
     def __unicode__(self):
         return self.interest_name
