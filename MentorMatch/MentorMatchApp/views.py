@@ -26,3 +26,16 @@ def match(*candidates):
         #Super complicated algorithm
 
     return c[0]
+
+def signup(request):
+    if request.method == 'POST':
+        form = Example_Person_Form(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            #return render_to_response()
+            return HttpResponse("Thank you!")
+    else:
+        form = Example_Person_Form()
+
+    return render_to_response('signup.html', {'form': form, "request_user":request.user,}, context_instance=RequestContext(request))
+ 
