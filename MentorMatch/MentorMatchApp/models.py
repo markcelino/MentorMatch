@@ -1,17 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User, UserManager
 
 # Create your models here.
 
-class ExamplePerson(models.Model):
-    name = models.CharField(max_length=250)
-    address = models.CharField(max_length=250)
-    age = models.IntegerField()
+class CustomUser(User):
+    """User with app settings."""
+    name = models.CharField(max_length=250, primary_key=True)
+#   email = models.CharField(max_length=250)
+    department = models.CharField(max_length=250)      
+    mentee = models.BooleanField()
+    mentor = models.BooleanField()
+    numMentees = models.IntegerField()
+    numMentors = models.IntegerField()
 
     #This is one way to handle relationships between entities
-    interests = models.ManyToManyField("ExampleInterests")
-
+    interests = models.ManyToManyField("Interest")
+    campus = models.ForeignKey('Campus')
+        
     # This is how the object displays if we print it
     def __unicode__(self):
         return self.name 
@@ -20,8 +27,46 @@ class ExamplePerson(models.Model):
         # --> print michaelObject
         # michael willingham
 
-class ExampleInterests(models.Model):
-    interest_name = models.CharField(max_length=250)
+    # Use UserManager to get the create_user method, etc.
+    objects = UserManager()
 
+"""
+class User(models.Model):
+    name = models.CharField(max_length=250)
+    address = models.CharField(max_length=250)
+    age = models.IntegerField()
+
+    #This is one way to handle relationships between entities
+    interests = models.ManyToManyField("Interests")
+
+    # This is how the object displays if we print it
+    def __unicode__(self):
+        return self.name 
+        # Example of what unicode does:
+        # --> michaelObject.name = "Michael Willingham"
+        # --> print michaelObject
+        # michael willingham
+"""
+class Interest(models.Model):
+    interest_name = models.CharField(max_length=250,primary_key=True)
+    expertise = models.BooleanField()
+
+    users = models.ManyToManyField("CustomUser")    
+    
     def __unicode__(self):
         return self.interest_name
+
+class Campus(models.Model):
+    campus_name = models.CharField(max_length=250,primary_key=True)
+
+    def __unicode__(self):
+        return self.campus_name
+
+class Building(models.Model):
+    building_name = models.CharField(max_length=250,primary_key=True)
+
+    campus = models.ForeignKey('Campus')
+
+    def __unicode__(self):
+        return self.campus_name
+
