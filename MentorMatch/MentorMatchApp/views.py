@@ -26,9 +26,9 @@ def example_match(request):
 
 # Insert Tran's Matching algorithm here:
 def match(*candidates):
+    #Pass Mentor list and Mentee list
     for c in candidates:
         print "Do nothing right now"
-        #Super complicated algorithm
 
     return c[0]
 
@@ -57,7 +57,7 @@ def profile(request):
 def logoutUser(request):
     if (request.user.is_authenticated()):
         logout(request)
-    return home(request)
+    return HttpResponseRedirect("/")
 
 def loginUser(request):
     if request.method == 'POST':
