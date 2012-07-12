@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User, UserManager
 
@@ -7,7 +6,7 @@ from django.contrib.auth.models import User, UserManager
 
 class CustomUser(User):
     """User with app settings."""
-    name = models.CharField(max_length=250, primary_key=True)
+#   name = models.CharField(max_length=250, primary_key=True)
 #   email = models.CharField(max_length=250)
     department = models.CharField(max_length=250)      
     mentee = models.BooleanField()
@@ -18,6 +17,7 @@ class CustomUser(User):
     #This is one way to handle relationships between entities
     interests = models.ManyToManyField("Interest")
     campus = models.ForeignKey('Campus')
+#    building = models.ForeignKey('Building')
         
     # This is how the object displays if we print it
     def __unicode__(self):
@@ -68,5 +68,5 @@ class Building(models.Model):
     campus = models.ForeignKey('Campus')
 
     def __unicode__(self):
-        return self.campus_name
+        return self.building_name
 

@@ -6,4 +6,5 @@ from MentorMatch.MentorMatchApp.models import *
 
 admin.site.register(CustomUser)
 admin.site.register(Interest)
-#admin.site.register()
+admin.site.register(Building)
+admin.site.register(Campus)
