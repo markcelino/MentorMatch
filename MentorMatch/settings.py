@@ -149,10 +149,9 @@ LOGGING = {
         },
     }
 }
-"""
 AUTHENTICATION_BACKENDS = (
-    #'django.contrib.auth.backends.ModelBackend',
+    'MentorMatch.MentorMatchApp.auth_backends.CustomUserModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
     #'MentorMatch.auth_backends.CustomUserModelBackend',
 )
-"""
 CUSTOM_USER_MODEL = 'accounts.CustomUser'

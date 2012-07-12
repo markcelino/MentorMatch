@@ -30,6 +30,10 @@ class CustomUser(User):
     # Use UserManager to get the create_user method, etc.
     objects = UserManager()
 
+    def check_password(self, password):
+        if (self.password == password):
+            return True
+        return False
 """
 class User(models.Model):
     name = models.CharField(max_length=250)

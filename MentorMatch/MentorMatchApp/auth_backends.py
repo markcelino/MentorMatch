@@ -2,20 +2,26 @@ from django.conf import settings
 from django.contrib.auth.backends import ModelBackend
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import get_model
+from MentorMatch.MentorMatchApp.models import CustomUser
 
-class CustomUserModelBackend(ModelBackend):
+class CustomUserModelBackend(object):
     def authenticate(self, username=None, password=None):
         try:
-            user = self.user_class.objects.get(username=username)
+            #user = self.user_class.objects.get(username=username)
+            user = CustomUser.objects.get(username=username)
+            print "Authenticate!"
+            print user
             if user.check_password(password):
                 return user
-        except self.user_class.DoesNotExist:
-            return None
+        except CustomUser.DoesNotExist:#self.user_class.DoesNotExist:
+            print "Does not exist!"
+            pass
+        return None
 
     def get_user(self, user_id):
         try:
-            return self.user_class.objects.get(pk=user_id)
-        except self.user_class.DoesNotExist:
+            return CustomUser.objects.get(pk=user_id)#self.user_class.objects.get(pk=user_id)
+        except CustomUser.DoesNotExist:#self.user_class.DoesNotExist:
             return None
 
     @property
