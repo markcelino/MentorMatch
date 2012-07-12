@@ -149,3 +149,9 @@ LOGGING = {
         },
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    'MentorMatch.auth_backends.CustomUserModelBackend',
+)
+
+CUSTOM_USER_MODEL = 'accounts.CustomUser'
