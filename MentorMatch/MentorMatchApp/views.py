@@ -10,7 +10,7 @@ from forms import *
 # Django handling the HTTP request.
 def example_match(request):
     # Get all the people objects in the data base. candidates is an Array
-    candidates = ExamplePerson.objects.all()
+    candidates = CustomUser.objects.all()
 
     # Pass all people to the matching algorithm. Get the best match
     the_chosen_one = match(candidates)
