@@ -3,9 +3,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.loader import get_template
 from django.template import Context, RequestContext
+from django.contrib.auth import logout
+from django.contrib.auth import authenticate
 #import django.template.RequestContext
 from models import *
 from forms import *
+
+def home(request):
+    return render_to_response('home.html', {"request_user":request.user})
 
 # Django handling the HTTP request.
 def example_match(request):
@@ -38,4 +43,30 @@ def signup(request):
         form = Example_Person_Form()
 
     return render_to_response('signup.html', {'form': form, "request_user":request.user,}, context_instance=RequestContext(request))
- 
+
+def profile(request):
+    if request.user.is_authenticated():
+        currentUser = CustomUser.objects.filter(id=request.user.id)
+        return render_to_response('user_profile.html', {
+            'request_user':request.user,
+            'currentUser':currentUser,
+            })
+    else:
+        return signup(request)
+
+def logoutUser(request):
+    if (request.user.is_authenticated()):
+        logout(request)
+    return home(request)
+
+def loginUser(request):
+    if request.method == 'POST':
+        form = Login(request.POST)
+        user = authenticate(username=form['alias'], password=form['password'])
+    else:
+        form = Login()
+    return render_to_response('user_login.html', {
+        'request_user':request.user,
+        'form':form,
+        })
+    

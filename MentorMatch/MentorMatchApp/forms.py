@@ -8,3 +8,6 @@ class Example_Person_Form(forms.ModelForm):
         #Fields we don't want the user to edit on the form
         exclude = ('address')
 
+class Login(forms.Form):
+    alias = forms.CharField(max_length=4)
+    password = forms.CharField(widget=forms.PasswordInput)
