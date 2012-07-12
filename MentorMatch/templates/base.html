@@ -30,13 +30,15 @@
         <li class="active">
           <a class="brand" href="/">MentorMatch</a>
         </li>
-        <li><a href="/signup">Signup</a></li>
+        <li><a href="/users">Users</a></li>
         <li><a href="/match">MentorMatch Me!</a></li>
         <li><a href="/about">About</a></li>
         <li class="divider-vertical"></li>
         {% if request_user.is_authenticated %}
+          <li><a href="/profile">Profile</a></li>
           <li><a href="/logout">Logout</a></li>
         {% else %}
+          <li><a href="/signup">Signup</a></li>
           <li><a href="/login">Login</a></li>
         {% endif %}
    
