@@ -25,6 +25,8 @@ urlpatterns = patterns('',
     #Profiles
     (r'^profile/$', profile),
     (r'^profile/edit$', profile),
+    (r'^users/(?P<alias>\w+)/$', display_user),
+    #(r'^users/$', user),
     
     (r'^$', home),
 )

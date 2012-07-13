@@ -38,7 +38,7 @@ def signup(request):
         if form.is_valid():
             new_user = form.save()
             #return render_to_response()
-            return HttpResponse("Thank you!")
+            return HttpResponseRedirect("/profile")
     else:
         form = Example_Person_Form()
 
@@ -46,13 +46,20 @@ def signup(request):
 
 def profile(request):
     if request.user.is_authenticated():
-        currentUser = CustomUser.objects.filter(id=request.user.id)
+        currentUser = CustomUser.objects.get(id=request.user.id)
         return render_to_response('user_profile.html', {
             'request_user':request.user,
             'currentUser':currentUser,
             })
     else:
         return signup(request)
+
+def display_user(request, alias):
+    currentUser = CustomUser.objects.get(username=alias)
+    return render_to_response('user_display.html', {
+        'request_user':request.user,
+        'currentUser':currentUser,
+        })
 
 def logoutUser(request):
     if (request.user.is_authenticated()):
@@ -83,4 +90,5 @@ def loginUser(request):
         'request_user':request.user,
         'form':form,
         }, context_instance=RequestContext(request))
-    
+
+

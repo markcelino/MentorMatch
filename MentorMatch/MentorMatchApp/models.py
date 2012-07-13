@@ -17,7 +17,10 @@ class CustomUser(User):
     #This is one way to handle relationships between entities
     interests = models.ManyToManyField("Interest")
     campus = models.ForeignKey('Campus')
-#    building = models.ForeignKey('Building')
+    building = models.ForeignKey('Building')
+
+    mentors = models.ManyToManyField("CustomUser", related_name='MentorOf', blank=True)
+    mentees = models.ManyToManyField('CustomUser', related_name='MenteeOf', blank=True)
         
     # This is how the object displays if we print it
     def __unicode__(self):

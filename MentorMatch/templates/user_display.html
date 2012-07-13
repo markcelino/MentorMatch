@@ -1,15 +1,32 @@
-{% extends "user_base.html" %}
-
+{% extends "base.html" %}
+{% block content %}
 <!-- Header
 ================================================== -->
 {% block header %}
 <header class="page-header">
   <div class="inner">
-    <h1>My Profile
+    <h1>Users
+    <small> Sharing the passion for mentoring </small>
 </h1>
   </div>
 </header>
 {% endblock %}
+
+<!-- Sidebar================================================== -->
+<div class="row-fluid">
+    <div class="span3">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                <li class="nav-header">User options</li>
+                <li><a href="/Search Users">view profile</a></li>
+                <li><a href="/profile/edit/">edit profile</a></li>
+                <!-- 
+                <li><a href="/users/viewAll/">view all profiles</a></li>
+                <li><a href="/users/">search profiles</a></li>
+                -->
+            </ul>
+        </div><!--/.well -->
+    </div><!--/span-->
 
 
 
@@ -20,7 +37,7 @@
 <div class="span8">
  
 <div class="well">
-  <h2>My information</h2>
+  <h2>Profile Information</h2>
         <br>  
         <ul><small>  Name:  {{ currentUser.name }}</small></ul>
         <ul><small>  Email:  {{ currentUser.email }}</small></ul>
@@ -40,14 +57,16 @@
    
 <div class="well">
 <h2> Mentors </h2>
+{% for mentor in currentUser.mentors.all %}
+    <li><a href="/users/{{mentor.username}}">{{mentor}}</a></li>
+{% endfor %}
 </div>
 
 <div class="well">
 <h2> Mentees </h2>
-</div>
-
-<div class="well">
-<h2> Potential Mentors </h2>
+{% for mentee in currentUser.mentees.all %}
+    <li><a href="/users/{{mentee.username}}">{{mentee}}</a></li>
+{% endfor %}
 </div>
 
  <div class="well">
@@ -56,6 +75,6 @@
 </div>
 
       
-   
+{% endblock %}
 {% endblock %}
 
