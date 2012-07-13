@@ -1,0 +1,59 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+
+<meta charset="utf-8"> 
+<title>Mentor Match</title> 
+<meta name="description" content="State Farm Hack Day Project">
+
+<link href="/static/twitter-bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet">
+<link href="/static/twitter-bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="/static/twitter-bootstrap/docs/assets/css/main.css" rel="stylesheet">
+
+</head>
+  
+
+
+<!-- Navbar 
+=========================================================== -->
+<div class="navbar navbar-fixed-top">  
+  <div class="navbar-inner">  
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+        <!--navigation does here-->
+      <div class="nav-collapse">
+      <ul class="nav">
+        <li class="active">
+          <a class="brand" href="/">MentorMatch</a>
+        </li>
+        <li><a href="/users">Users</a></li>
+        <li><a href="/match">MentorMatch Me!</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="divider-vertical"></li>
+        {% if request_user.is_authenticated %}
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        {% else %}
+          <li><a href="/signup">Signup</a></li>
+          <li><a href="/login">Login</a></li>
+        {% endif %}
+   
+      </ul>
+      </div>
+    </div>  
+  </div>  
+</div>
+
+<div class="container">
+
+<hr class="soften">
+
+{% block content %}
+
+{% endblock %}
+
+</html> 

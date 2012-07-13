@@ -1,0 +1,54 @@
+{% extends "user_base.html" %}
+
+<!-- Header
+================================================== -->
+{% block header %}
+<header class="page-header">
+  <div class="inner">
+    <h1>My Profile:
+    <small>{{ currentUser.name }} </small>
+</h1>
+  </div>
+</header>
+{% endblock %}
+
+
+
+{% block userSearch %}{% endblock %}
+{% block userContent %}
+
+ 
+<div class="span8">
+ 
+<div class="well">
+  <h2>My information</h2>
+      
+        <ul><small>  Name  :  {{ user.first_name }}</small></ul> 
+		<ul><small>  City  :  {{ user.last_name }}</small></ul> 
+		<ul><small>  Email  :  {{ user.email }}</small></ul> 
+		<ul><small>  Age  :  {{ user.age }}</small></ul> 
+		<ul><small>  Gender  :  {{ user.gender }}</small></ul> 
+	
+ </div>
+   
+<div class="well">
+<h2> Mentors </h2>
+</div>
+
+<div class="well">
+<h2> Mentees </h2>
+</div>
+
+<div class="well">
+<h2> Potential Mentors </h2>
+</div>
+
+ <div class="well">
+ </div>
+
+</div>
+
+      
+   
+{% endblock %}
+

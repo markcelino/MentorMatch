@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Header
+================================================== -->
+{% block header %}
+<header class="page-header">
+  <div class="inner">
+    <h1>Users
+    <small>The likeminded people that share your passion for mentoring!</small>
+</h1>
+  </div>
+</header>
+{% endblock %}
+
+<!-- Sidebar================================================== -->
+<div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">User options</li>
+              <li><a href="/profile/">view profile</a></li>
+              <li><a href="/profile/edit/">edit profile</a></li>
+        <!-- 
+              <li><a href="/users/viewAll/">view all profiles</a></li>
+              <li><a href="/users/">search profiles</a></li>
+        -->
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+{% block userSearch %}
+<div class="span7">
+ <div class="well">
+  <form action="/users/search/" method="GET">
+ <label for="q">Search: </label>
+ <input type="text" name="q" value="{{ query }}">
+<input type="submit" value="Search">
+ </form>
+</div><!-- well -->
+</div><!--span-->
+{% endblock %}
+{% block userContent %}{% endblock %}
+
+</div><!--/row-fluid -->
+{% endblock %}
