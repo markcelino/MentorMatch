@@ -52,7 +52,7 @@ def extract(query, choices, processor=None, scorer=None, limit=5):
 
     # default: wratio
     if scorer is None:
-        scorer = WRatio
+        scorer = ratio
 
     sl = list()
 
